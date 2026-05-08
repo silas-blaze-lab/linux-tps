@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Système Linux - Ibrahim</title>
+    <style>
+        :root { --bg: #0d1117; --term: #000; --text: #c9d1d9; --green: #3fb950; --blue: #58a6ff; --gold: #d29922; --border: #30363d; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 40px; line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; }
+        h1 { text-align: center; color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 10px; }
+        h2 { color: var(--gold); border-left: 5px solid var(--gold); padding-left: 15px; margin-top: 50px; background: #161b22; padding-top: 10px; padding-bottom: 10px; }
+        .question-box { background: #0d1117; border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid var(--blue); }
+        .question-text { font-weight: bold; color: #fff; display: block; margin-bottom: 10px; }
+        .explanation { color: #8b949e; font-size: 0.9em; margin-bottom: 10px; font-style: italic; }
+        .terminal { background: var(--term); color: #fff; padding: 20px; border-radius: 6px; font-family: 'Cascadia Code', monospace; border: 1px solid var(--border); overflow-x: auto; }
+        .prompt { color: var(--green); }
+        .command { color: #fff; font-weight: bold; }
+        .script-block { background: #1c2128; color: #adbac7; padding: 15px; border-radius: 6px; border: 1px dotted var(--blue); font-family: monospace; }
+        nav { position: sticky; top: 0; background: var(--bg); padding: 10px; text-align: center; border-bottom: 1px solid var(--border); z-index: 100; }
+        nav a { color: var(--blue); margin: 0 15px; text-decoration: none; font-weight: bold; }
+        footer { text-align: center; margin-top: 60px; padding: 20px; border-top: 1px solid var(--border); color: #484f58; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#tp2">TP 2 (Arborescence)</a>
+    <a href="#tp3">TP 3 (Filtrage)</a>
+    <a href="#tp4">TP 4 (Scripts)</a>
+</nav>
+
+<div class="container">
+    <h1>Rapport Complet de Travaux Pratiques</h1>
+    <div class="terminal" style="margin-bottom: 30px; text-align: center;">
+        [ibrahim@ThinkPad ~] System:  Linux | 
+    </div>
+
+    <h2 id="tp2">TP 2 : Arborescence, Liens et Permissions</h2>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 1 & 2 : Création et manipulation de fichiers</span>
+        <p class="explanation">Objectif : Créer une structure imbriquée et copier des fichiers système.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">mkdir -p tp2/tsdi1 tp2/tsdi2</span><br>
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">cp /etc/passwd tp2/tsdi1/f1</span><br>
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">cp /etc/group tp2/tsdi2/f2</span>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 3 : Inodes et Liens Physiques</span>
+        <p class="explanation">Vérification de l'identifiant unique (inode) et création d'un lien physique.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">ls -i tp2/tsdi1/f1</span><br>
+            <span class="prompt">Result: 786432 f1</span><br>
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">ln tp2/tsdi1/f1 tp2/tsdi1/f1_link</span><br>
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">ls -li tp2/tsdi1/</span> <span class="explanation"># Pour vérifier que les deux fichiers partagent le même inode.</span>
+        </div>
+    </div>
+
+    <h2 id="tp3">TP 3 : Commandes de Filtrage (Grep, Cut, WC)</h2>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 1 : Filtrage avec métacaractères</span>
+        <p class="explanation">Question : Lister les fichiers commençant par 'p' (P ou p) et ayant au moins 3 caractères.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">ls [pP]??*</span>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 2 : Statistiques et recherche</span>
+        <p class="explanation">Calculer le nombre de lignes du fichier /etc/passwd et extraire les noms d'utilisateurs.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">wc -l /etc/passwd</span><br>
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">cut -d: -f1 /etc/passwd | head -n 5</span>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 3 : Gestion des droits (Chmod)</span>
+        <p class="explanation">Appliquer les droits rwxr-x--- aux fichiers f1, f2 et f3.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@ThinkPad ~]$</span> <span class="command">chmod 750 f1 f2 f3</span>
+        </div>
+    </div>
+
+    <h2 id="tp4">TP 4 : Programmation Shell (Scripts)</h2>
+
+    <div class="question-box">
+        <span class="question-text">Script 1 : Calcul de moyenne et mentions</span>
+        <div class="script-block">
+<pre>#!/bin/bash
+sum=0; count=0
+while true; do
+    read -p "Saisir une note (ou 'q' pour quitter) : " input
+    [[ "$input" == "q" ]] && break
+    if (( $(echo "$input < 10" | bc -l) )); then echo "Ajourné"
+    elif (( $(echo "$input < 12" | bc -l) )); then echo "Passable"
+    else echo "Bien"; fi
+    sum=$(echo "$sum + $input" | bc -l); count=$((count + 1))
+done
+[ $count -gt 0 ] && echo "Moyenne: $(echo "$sum/$count" | bc -l)"</pre>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Script 2 : Vérification d'existence d'utilisateur</span>
+        <div class="script-block">
+<pre>#!/bin/bash
+read -p "Login : " user
+grep -q "^$user:" /etc/passwd && echo "Existe" || echo "N'existe pas"</pre>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Script 3 : Affichage des membres d'un groupe</span>
+        <div class="script-block">
+<pre>#!/bin/bash
+read -p "Groupe : " grp
+grep "^$grp:" /etc/group | cut -d: -f4</pre>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Script 4 : Copie sécurisée avec paramètres</span>
+        <div class="script-block">
+<pre>#!/bin/bash
+if [ $# -ne 2 ]; then echo "Usage: $0 source destination"; exit 1; fi
+[ -f "$1" ] && cp "$1" "$2" && echo "Copié" || echo "Erreur"</pre>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Script 5 : Modification interactive des droits</span>
+        <div class="script-block">
+<pre>#!/bin/bash
+read -p "Fichier : " f; read -p "Droits (ex: 755) : " d
+[ -e "$f" ] && chmod "$d" "$f" && ls -l "$f"</pre>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Script 6 : Menu Principal (Intégration)</span>
+        <div class="script-block">
+<pre>#!/bin/bash
+echo "1) Moyenne 2) User 3) Groupe 4) Copie 5) Droits 0) Quitter"
+read -p "Choix : " c
+case $c in
+    1) ./tp4_1.sh ;; 2) ./tp4_2.sh ;; 3) ./tp4_3.sh ;;
+    4) ./tp4_4.sh ;; 5) ./tp4_5.sh ;; 0) exit ;;
+esac</pre>
+        </div>
+    </div>
+
+    <footer>
+        Conçu par Ibrahim Bouhaj | Environnement ThinkPad | Arch Linux 2026
+    </footer>
+</div>
+
+</body>
+</html>
