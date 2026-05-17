@@ -24,6 +24,7 @@
 <body>
 
 <nav>
+    <a href="#td1">TD 1 (Introduction)</a>
     <a href="#tp2">TP 2 (Arborescence)</a>
     <a href="#tp3">TP 3 (Filtrage)</a>
     <a href="#tp4">TP 4 (Scripts)</a>
@@ -32,7 +33,85 @@
 <div class="container">
     <h1>Rapport Complet de Travaux Pratiques</h1>
     <div class="terminal" style="margin-bottom: 30px; text-align: center;">
-        [ibrahim@ThinkPad ~] System:  Linux | 
+        [ibrahim@ThinkPad ~] System: Linux | Etudiant: Ibrahim Bouhaj
+    </div>
+
+    <h2 id="td1">TD 1 : Introduction à Linux & Commandes de Base</h2>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 1 : Vérification de l'environnement</span>
+        <p class="explanation">Vérifier la version de WSL, ouvrir Ubuntu, afficher le répertoire courant et lister le contenu.</p>
+        <div class="terminal">
+            <span class="prompt">C:\Users\Ibrahim&gt;</span> <span class="command">wsl --version</span><br>
+            <span class="explanation"># Ouvrir la distribution Ubuntu et passer aux commandes Linux</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~]$</span> <span class="command">pwd</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~]$</span> <span class="command">ls</span>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="question-text" style="color: var(--gold);">Question : Décrivez brièvement le rôle du répertoire /home/nom_utilisateur dans Linux.</span>
+            <p class="explanation" style="color: #fff; font-style: normal;"><strong>Réponse :</strong> C'est le répertoire personnel (Home Directory) de l'utilisateur. Il sert à stocker les données privées, les documents et les fichiers de configuration de cet utilisateur spécifique, garantissant la sécurité et l'isolation des données entre les différents utilisateurs du système.</p>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 2 : Déplacements dans le système de fichiers</span>
+        <p class="explanation">Créer un répertoire dédié au TD, s'y déplacer, afficher le chemin absolu et revenir au parent.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@Ubuntu ~]$</span> <span class="command">mkdir TD1</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~]$</span> <span class="command">cd TD1</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">pwd</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">cd ..</span>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="question-text" style="color: var(--gold);">Question : Quel est l'effet précis de la commande cd .. ? Expliquez son rôle dans la navigation.</span>
+            <p class="explanation" style="color: #fff; font-style: normal;"><strong>Réponse :</strong> La commande <code>cd ..</code> permet de remonter d'un niveau dans l'arborescence des fichiers pour revenir au répertoire parent du dossier actuel. Le symbole ".." représente systématiquement le parent du répertoire courant.</p>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 3 & 4 : Création et Édition de fichiers simples (Nano)</span>
+        <p class="explanation">Créer trois fichiers vides, vérifier leur création, et éditer "tsdi1" avec l'éditeur Nano.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">touch tsdi1 tsdi2 tsdi3</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">ls</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">cat tsdi1</span> <span class="explanation"># Initialement vide</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">nano tsdi1</span> <span class="explanation"># Ajouter 3 lignes, puis Ctrl+O (Enregistrer) -> Entrée -> Ctrl+X (Quitter)</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">cat tsdi1</span> <span class="explanation"># Vérifier le contenu saisi</span>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="question-text" style="color: var(--gold);">Question : Quelle est la différence entre touch et un éditeur comme nano dans la création et la gestion de fichiers ?</span>
+            <p class="explanation" style="color: #fff; font-style: normal;"><strong>Réponse :</strong> La commande <code>touch</code> est principalement utilisée pour créer rapidement un fichier vide (ou mettre à jour ses horodatages) sans ouvrir d'interface. En revanche, <code>nano</code> est un éditeur de texte en ligne de commande qui permet à la fois de créer un fichier et d'ouvrir une interface interactive pour écrire, modifier et manipuler son contenu textuel.</p>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 5 : Copie de fichiers et répertoires</span>
+        <p class="explanation">Créer un dossier de sauvegarde et manipuler la commande cp avec options.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">mkdir backup</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">cp tsdi1 backup/</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">cp -i tsdi2 backup/</span> <span class="explanation"># Demande de confirmation si le fichier existe déjà</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">cp -r /etc etc_Copie</span> <span class="explanation"># Copier tout le répertoire etc</span>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="question-text" style="color: var(--gold);">Question : À quoi sert l'option -r lors d'une copie ? Pourquoi est-elle indispensable pour les répertoires ?</span>
+            <p class="explanation" style="color: #fff; font-style: normal;"><strong>Réponse :</strong> L'option <code>-r</code> (ou <code>-R</code>) signifie "récursif". Elle est indispensable pour copier des répertoires car, par défaut, la commande <code>cp</code> ne copie que les fichiers simples. L'option récursive force le système à copier le dossier cible ainsi que tout son contenu (sous-dossiers et fichiers inclus) en conservant la structure.</p>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <span class="question-text">Exercice 6 & 7 : Suppression de fichiers et de répertoires</span>
+        <p class="explanation">Supprimer des fichiers avec ou sans confirmation, et supprimer des répertoires vides ou pleins.</p>
+        <div class="terminal">
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">rm tsdi3</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">rm -i tsdi2</span> <span class="explanation"># Suppression avec demande de confirmation</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">rmdir dossier_vide</span> <span class="explanation"># Supprime uniquement s'il est vide</span><br>
+            <span class="prompt">[ibrahim@Ubuntu ~/TD1]$</span> <span class="command">rm -r backup</span> <span class="explanation"># Supprime le répertoire et tout son contenu</span>
+        </div>
+        <div style="margin-top: 15px;">
+            <span class="question-text" style="color: var(--gold);">Question : Pourquoi faut-il faire preuve d'une très grande prudence avec la commande rm -r ? Donnez une justification technique.</span>
+            <p class="explanation" style="color: #fff; font-style: normal;"><strong>Réponse :</strong> Sur Linux, la commande <code>rm -r</code> supprime définitivement les données de manière récursive sans passer par une "corbeille". D'un point de vue technique, le système libère immédiatement les inodes et les blocs de données associés aux fichiers sur le disque dur. Il est donc extrêmement difficile, voire impossible sans outils de forensic poussés, de récupérer ces données en cas d'erreur (surtout si elle est exécutée avec les privilèges root via <code>sudo</code>).</p>
+        </div>
     </div>
 
     <h2 id="tp2">TP 2 : Arborescence, Liens et Permissions</h2>
